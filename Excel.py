@@ -1,11 +1,10 @@
 import os
 
-import openpyxl
 from openpyxl import load_workbook, Workbook
 
 
 def combine_excel_into_one_file(source_folder: str, out_file: str):
-    workbook = openpyxl.Workbook()
+    workbook = Workbook()
     sheet = workbook.active
 
     for root, dirs, filenames in os.walk(source_folder):
@@ -13,7 +12,7 @@ def combine_excel_into_one_file(source_folder: str, out_file: str):
             if filename.endswith('.xlsx'):
                 file_path = os.path.join(root, filename)
                 try:
-                    wb = openpyxl.load_workbook(filename=file_path, read_only=True, data_only=True)
+                    wb = load_workbook(filename=file_path, read_only=True, data_only=True)
                     for ws in wb.worksheets:
                         for row in ws.iter_rows(values_only=True):
                             sheet.append([filename] + list(row))
