@@ -1,0 +1,5 @@
+/Webinar/.env_webinar_token
+/.env
+/chromedriver.exe
+*.pk
+/venv/
